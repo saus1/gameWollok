@@ -5,12 +5,12 @@ import ladrillos.*
 
 object inicioGame {
   method iniciar() {
-    self.configurarJuego()
-    self.agregarPersonajes()
-    self.camino()
-    self.configurarTeclas()
-    self.configurarAcciones()
-    game.start()
+        self.configurarJuego()
+        self.agregarPersonajes()
+        self.camino()
+        self.configurarTeclas()
+        self.configurarAcciones()
+        game.start()
   }
   
   method configurarJuego() {

@@ -10,10 +10,10 @@ class Ladrillo {
 
 
 object camino {
-  const posicionesOcupadas = []
+  const posicionesOcupadas = [] // se crea un array para almacenar las posiciones ocupadas por los ladrillos
   var property image = "ladrillo.jpg"
   var property position = game.at(0, 0)
-  const posiciones = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const posiciones = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  // con este array se crean las posiciones de las columnas y filas del tablero
   
   method image() = image
   

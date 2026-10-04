@@ -2,6 +2,5 @@
 import  configuracion.*
 
 program Juego {
-	
-inicioGame.iniciar()
+	inicioGame.iniciar()
 }

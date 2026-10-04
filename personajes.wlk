@@ -10,10 +10,10 @@ object tom {
   method position() = position
 
     method moverseA(nuevaPosicion) {
-    // if (!ladrillos.hayEn(nuevaPosicion)) {
-    if(!camino.posicionEstaOcupada(nuevaPosicion)){
+   // se verifica si la nueva posición no está ocupada por un ladrillo antes de mover a Tom  
+    if(!camino.posicionEstaOcupada(nuevaPosicion)){  
        position = nuevaPosicion
-     }
+     } 
   }
 }
 
