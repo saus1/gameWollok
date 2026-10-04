@@ -22,7 +22,7 @@ object inicioGame {
   }
   
   method agregarPersonajes() {
-    game.addVisual(tom)
+    game.addVisual(bomberman)
   }
   
   method camino() {
@@ -30,10 +30,10 @@ object inicioGame {
   }
   
   method configurarTeclas() {
-    keyboard.up().onPressDo({ tom.moverseA(tom.position().up(1)) })
-    keyboard.down().onPressDo({ tom.moverseA(tom.position().down(1)) })
-    keyboard.left().onPressDo({ tom.moverseA(tom.position().left(1)) })
-    keyboard.right().onPressDo({ tom.moverseA(tom.position().right(1)) })
+    keyboard.up().onPressDo({ bomberman.mover(arriba) })
+    keyboard.down().onPressDo({ bomberman.mover(abajo) })
+    keyboard.left().onPressDo({ bomberman.mover(izquierda) })
+    keyboard.right().onPressDo({ bomberman.mover(derecha) })
   }
   
   method configurarAcciones() {
