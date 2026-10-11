@@ -4,10 +4,12 @@ import movimiento.*
 import ladrillos.*
 
 object inicioGame {
+var personajeEnemigo = new Personaje(imagen = "enemigo.png")
+var personajeEnemigo2 = new Personaje(imagen = "enemigo2.png")
   method iniciar() {
         self.configurarJuego()
-        self.agregarPersonajes()
         self.camino()
+        self.agregarPersonajes()
         self.configurarTeclas()
         self.configurarAcciones()
         game.start()
@@ -23,6 +25,9 @@ object inicioGame {
   
   method agregarPersonajes() {
     game.addVisual(bomberman)
+    game.addVisual(personajeEnemigo)
+    game.addVisual(personajeEnemigo2)
+   
   }
   
   method camino() {
@@ -31,12 +36,15 @@ object inicioGame {
   
   method configurarTeclas() {
     keyboard.up().onPressDo({ bomberman.mover(arriba) })
-    keyboard.down().onPressDo({ bomberman.mover(abajo) })
+   keyboard.down().onPressDo({ bomberman.mover(abajo) })
     keyboard.left().onPressDo({ bomberman.mover(izquierda) })
     keyboard.right().onPressDo({ bomberman.mover(derecha) })
   }
   
   method configurarAcciones() {
-    game.onTick(1000, "mover aleatoriamente", { aleatorio.nuevaPosicion() })
+    game.onTick(1000, "mover aleatoriamente", { personajeEnemigo.moverAleatoriamente() })
+    game.onTick(1000, "mover aleatoriamente", { personajeEnemigo2.moverAleatoriamente() })
   }
+
+  
 }
