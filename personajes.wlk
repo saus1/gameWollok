@@ -57,4 +57,15 @@ object bomberman {
       position = nuevaPosicion
     }
   }
+
+  method lanzarBomba() {
+    const nuevaBomba = new Bomba(position = position)
+    game.addVisual(nuevaBomba)
+  }
+}
+
+class Bomba{
+  var property position = game.at(0, 0)
+    method image() = "bomba.png"
+
 }
