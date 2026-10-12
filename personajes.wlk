@@ -64,7 +64,7 @@ object bomberman {
   }
 }
 
-class Bomba{
+class Bomba{ 
   var property position = game.at(0, 0)
     method image() = "bomba.png"
 
