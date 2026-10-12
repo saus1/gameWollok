@@ -61,11 +61,16 @@ object bomberman {
   method lanzarBomba() {
     const nuevaBomba = new Bomba(position = position)
     game.addVisual(nuevaBomba)
+    self.explotar(nuevaBomba)
   }
+  
+  
+  method explotar(nuevaBomba) {
+     game.onTick(3000, "explotar bomba", {game.removeVisual(nuevaBomba)} )}
 }
 
 class Bomba{ 
   var property position = game.at(0, 0)
-    method image() = "bomba.png"
-
+    method image() = "bomba2.png"
+  
 }

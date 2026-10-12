@@ -41,4 +41,8 @@ object camino {
   }
 
   method posicionEstaOcupada(posicion) = posicionesOcupadas.contains(posicion)
+
+  method explotarEn(posicion) {
+  
+  }
 }

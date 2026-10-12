@@ -7,6 +7,7 @@ object inicioGame {
   var personajeEnemigo = new Personaje(imagen = "enemigo.png")
   var personajeEnemigo2 = new Personaje(imagen = "enemigo2.png")
   
+  
   method iniciar() {
     self.configurarJuego()
     self.camino()
@@ -44,15 +45,8 @@ object inicioGame {
   }
   
   method configurarAcciones() {
-    game.onTick(
-      1000,
-      "mover aleatoriamente",
-      { personajeEnemigo.moverAleatoriamente() }
-    )
-    game.onTick(
-      1000,
-      "mover aleatoriamente",
-      { personajeEnemigo2.moverAleatoriamente() }
-    )
+    game.onTick(1000,"mover aleatoriamente",{ personajeEnemigo.moverAleatoriamente() })
+    game.onTick(1000,"mover aleatoriamente",{ personajeEnemigo2.moverAleatoriamente() } )
+   
   }
 }
