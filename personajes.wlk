@@ -1,13 +1,17 @@
 import wollok.game.*
-import ladrillos.*
-import movimiento.*
+import tablero.*
+import direcciones.*
+import bomba.*
+import aleatorio.*
 
 object bomberman {
-  var property position = game.at(1, 0)
+  var property position = game.at(1, 1)
+  var property alcance = 1
   var orientacion = derecha
 
   // la imagen depende de hacia donde esta mirando
   method image() = orientacion.imagen()
+  method esAtravesable() = true
 
   method mover(direccion) {
     orientacion = direccion.orientacionDesde(orientacion)
@@ -15,9 +19,51 @@ object bomberman {
   }
 
   method moverseA(nuevaPosicion) {
-    // solo se mueve si la nueva posición está dentro del tablero y no hay un ladrillo
-    if (tablero.estaDentro(nuevaPosicion) && !camino.posicionEstaOcupada(nuevaPosicion)) {
+    if(tablero.esAtravesable(nuevaPosicion)){
       position = nuevaPosicion
     }
+  }
+
+  method plantarBomba(){
+    if(!tablero.esAtravesable(position)) self.error("aca ya hay bomba")
+    new Bomba(position = position,alcance = alcance).plantar()
+  }
+
+  method recibirExplosion(){
+    game.say(self,"me exploto una bomba")
+  } // mas adelante pierde
+}
+
+class Enemigo {
+  var property position = game.at (0,0)
+  method image() = "enemigo.png"
+  method esAtravesable() = true
+  method recibirExplosion(){
+    enemigos.sacar(self)
+  }
+  method direccionesLibres() = [arriba,abajo,izquierda,derecha].filter({direccion => tablero.esAtravesable(direccion.siguiente(position))})
+  method moverAleatorio(){
+    const opciones = self.direccionesLibres()
+    if(!opciones.isEmpty()) position = aleatorio.elegir(opciones).siguiente(position)
+  }
+    method alTocarABomberman(){} // perdemos
+}
+
+object enemigos{
+  const vivos = []
+
+  method agregar(enemigo,lugar){
+    enemigo.position(lugar)
+    vivos.add(enemigo)
+    tablero.agregar(enemigo)
+  }
+
+  method sacar(enemigo){
+    vivos.remove(enemigo)
+    tablero.sacar(enemigo)
+  }
+
+  method seMueventodos(){
+    vivos.forEach({enemigo => enemigo.moverAleatorio()})
   }
 }

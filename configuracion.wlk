@@ -1,42 +1,47 @@
-import game.*
+import wollok.game.*
+import tablero.*
+import direcciones.*
+import escenario.*
 import personajes.*
-import movimiento.*
-import ladrillos.*
+import partida.*
 
 object inicioGame {
   method iniciar() {
-        self.configurarJuego()
-        self.agregarPersonajes()
-        self.camino()
-        self.configurarTeclas()
-        self.configurarAcciones()
-        game.start()
+    self.configurarJuego()
+    self.construirEscenario()
+    self.agregarPersonajes()
+    self.configurarTeclas()
+    self.configurarAcciones()
+    game.start()
   }
-  
+
   method configurarJuego() {
-    game.title("game")
-    game.width(10)
-    game.height(10)
-    game.cellSize(70)
-    ///game.boardGround("fondo.png")  // agegar fondo
+    game.title("Bomberman")
+    game.width(15)
+    game.height(11)
+    game.cellSize(50)
+    game.ground("fondo.png")
   }
-  
-  method agregarPersonajes() {
-    game.addVisual(bomberman)
-  }
-  
-  method camino() {
+
+  method construirEscenario() {
     camino.construccionCamino()
   }
-  
-  method configurarTeclas() {
-    keyboard.up().onPressDo({ bomberman.mover(arriba) })
-    keyboard.down().onPressDo({ bomberman.mover(abajo) })
-    keyboard.left().onPressDo({ bomberman.mover(izquierda) })
-    keyboard.right().onPressDo({ bomberman.mover(derecha) })
+
+  method agregarPersonajes() {
+    tablero.agregar(bomberman)
+    [new Enemigo(), new Enemigo()].forEach({enemigo => enemigos.agregar(enemigo,camino.lugarLibreAlAzar())})
   }
-  
+
+  method configurarTeclas() {
+    keyboard.up().onPressDo({partida.permitir ({bomberman.mover(arriba)})})
+    keyboard.down().onPressDo({partida.permitir ({bomberman.mover(abajo)})})
+    keyboard.left().onPressDo({partida.permitir ({bomberman.mover(izquierda)})})
+    keyboard.right().onPressDo({partida.permitir ({bomberman.mover(derecha)})})
+    keyboard.space().onPressDo({partida.permitir ({bomberman.plantarBomba()})})
+  }
+
   method configurarAcciones() {
-    game.onTick(1000, "mover aleatoriamente", { aleatorio.nuevaPosicion() })
+    game.tick(1000, {partida.permitir({enemigos.seMueventodos()})}, false).start()// aca van a ir los movimientos de los enemigos (paso 3)
+    game.onCollideDo(bomberman,{elemento => elemento.alTocarABomberman()})
   }
 }
