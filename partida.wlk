@@ -32,10 +32,11 @@ object finPartida{
 object cartel{
     var property text = ""
     method position() = game.center()
-    method textColor() = "FFFFFFFF"
-    method alTocarABomberman() {}
+    method image() = "FFFFFFFF"
+    //method alTocarABomberman() {}  este metodo no va 
     method mostrar(mensaje){
         text = mensaje
-        game.addVisual(self)
+     game.addVisual(self)
     }
 }
+

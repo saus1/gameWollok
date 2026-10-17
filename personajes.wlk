@@ -3,6 +3,8 @@ import tablero.*
 import direcciones.*
 import bomba.*
 import aleatorio.*
+import partida.*
+
 
 object bomberman {
   var property position = game.at(1, 1)
@@ -46,7 +48,10 @@ class Enemigo {
     const opciones = self.direccionesLibres()
     if(!opciones.isEmpty()) position = aleatorio.elegir(opciones).siguiente(position)
   }
-    method alTocarABomberman(){} // perdemos
+    method alTocarABomberman(){
+      partida.finalizar("Game Over")
+   
+    } // perdemos
 }
 
 object enemigos{
