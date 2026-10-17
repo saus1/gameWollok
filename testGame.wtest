@@ -1,0 +1,29 @@
+import direcciones.*
+import wollok.game.*
+import personajes.*
+import partida.*
+
+describe "Tests del Juego" {
+  const enemigo = new Enemigo()
+  
+  test "La posision inicial de Bomberman es (1,1)" {
+    assert.equals(game.at(1, 1), bomberman.position())
+  }
+  
+  test "Bomberman se mueve a la derecha" {
+    bomberman.mover(derecha)
+    assert.equals(game.at(2, 1), bomberman.position())
+  }
+  
+  test "la posicion inicial de de un enemigo es (0,0)" {
+    assert.equals(game.at(0, 0), enemigo.position())
+  }
+
+  test "El enemigo al chocar con Bomberman es el  fin del juego" {
+    enemigo.alTocarABomberman()
+    assert.equals("Game Over",cartel.text())
+
+
+
+  }
+}
