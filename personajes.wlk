@@ -41,7 +41,7 @@ class Enemigo {
   method image() = "enemigo.png"
   method esAtravesable() = true
   method recibirExplosion(){
-    enemigos.sacar(self)
+    listaEnemigos.sacar(self)
   }
   method direccionesLibres() = [arriba,abajo,izquierda,derecha].filter({direccion => tablero.esAtravesable(direccion.siguiente(position))})
   method moverAleatorio(){
@@ -49,12 +49,11 @@ class Enemigo {
     if(!opciones.isEmpty()) position = aleatorio.elegir(opciones).siguiente(position)
   }
     method alTocarABomberman(){
-      partida.finalizar("Game Over")
-   
+      partida.finalizar("PERDISTE")
     } // perdemos
 }
 
-object enemigos{
+object listaEnemigos{ // coleccion de enemigos que hay en el juego
   const vivos = []
 
   method agregar(enemigo,lugar){

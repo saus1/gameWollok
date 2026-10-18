@@ -29,7 +29,7 @@ object inicioGame {
 
   method agregarPersonajes() {
     tablero.agregar(bomberman)
-    [new Enemigo(), new Enemigo()].forEach({enemigo => enemigos.agregar(enemigo,camino.lugarLibreAlAzar())})
+    [new Enemigo(), new Enemigo()].forEach({enemigo => listaEnemigos.agregar(enemigo,camino.lugarLibreAlAzar())})
   }
 
   method configurarTeclas() {
@@ -41,7 +41,7 @@ object inicioGame {
   }
 
   method configurarAcciones() {
-    game.tick(1000, {partida.permitir({enemigos.seMueventodos()})}, false).start()// aca van a ir los movimientos de los enemigos (paso 3)
+    game.tick(1000, {partida.permitir({listaEnemigos.seMueventodos()})}, false).start()// aca van a ir los movimientos de los enemigos (paso 3)
     game.onCollideDo(bomberman,{elemento => elemento.alTocarABomberman()})
   }
 }

@@ -21,7 +21,7 @@ describe "Tests del Juego" {
 
   test "El enemigo al chocar con Bomberman es el  fin del juego" {
     enemigo.alTocarABomberman()
-    assert.equals("Game Over",cartel.text())
+    assert.equals("PERDISTE",cartel.text())
 
 
 

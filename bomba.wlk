@@ -1,6 +1,7 @@
 import wollok.game.*
 import tablero.*
 import direcciones.*
+import partida.*
 
 class Bomba {
     const property position
@@ -47,7 +48,9 @@ class Bomba {
             direccion.imgParte()
         }
     
-    method alTocarABomberman(){} //perdemos
+    method alTocarABomberman(){
+        partida.finalizar("PERDISTE")
+    } //perdemos
 }
 
     class Fuego {
