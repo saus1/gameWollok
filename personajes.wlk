@@ -32,8 +32,8 @@ object bomberman {
   }
 
   method recibirExplosion(){
-    game.say(self,"me exploto una bomba")
-  } // mas adelante pierde
+    partida.finalizar("PERDISTE")
+  }
 }
 
 class Enemigo {

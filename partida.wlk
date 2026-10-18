@@ -33,7 +33,7 @@ object cartel{
     var property text = ""
     method position() = game.center()
     method textColor() = "FFFFFFFF"
-    //method alTocarABomberman() {}
+    method alTocarABomberman() {} // evita error cuando el juego termina y Bomberman esta en el cartel
     method mostrar(mensaje){
         text = mensaje
         game.addVisual(self)
