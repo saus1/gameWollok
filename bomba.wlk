@@ -48,9 +48,7 @@ class Bomba {
             direccion.imgParte()
         }
     
-    method alTocarABomberman(){
-        partida.finalizar("PERDISTE")
-    } //perdemos
+    method alTocarABomberman(){}
 }
 
     class Fuego {
@@ -65,5 +63,7 @@ class Bomba {
         game.schedule(600, { tablero.sacar(self) })
     }
 
-    method alTocarABomberman(){} //perdemos
+    method alTocarABomberman(){
+        partida.finalizar("PERDISTE")
+    } // perdemos
 }
