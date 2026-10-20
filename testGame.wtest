@@ -14,16 +14,18 @@ describe "Tests del Juego" {
     bomberman.mover(derecha)
     assert.equals(game.at(2, 1), bomberman.position())
   }
+  test "Bomberman no puede plantar una bomba fuera del tablero" {
+    bomberman.position(game.at(-1, -1))
+    assert.throwsException({ bomberman.plantarBomba() })
+   
+  }
+  test "El enemigo al chocar con Bomberman es el  fin del juego" {
+    enemigo.alTocarABomberman()
+    assert.equals("PERDISTE",cartel.text())
+}
   
   test "la posicion inicial de de un enemigo es (0,0)" {
     assert.equals(game.at(0, 0), enemigo.position())
   }
 
-  test "El enemigo al chocar con Bomberman es el  fin del juego" {
-    enemigo.alTocarABomberman()
-    assert.equals("PERDISTE",cartel.text())
-
-
-
-  }
 }
